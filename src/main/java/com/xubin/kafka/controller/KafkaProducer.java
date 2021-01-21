@@ -35,7 +35,7 @@ public class KafkaProducer {
 
     @GetMapping("/kafka/callbackTwo/{message}")
     public void sendMessage3(@PathVariable("message") String callbackMessage) {
-        kafkaTemplate.send("testtopic", callbackMessage).addCallback(new ListenableFutureCallback<SendResult<String, Object>>() {
+        kafkaTemplate.send("topic2", callbackMessage).addCallback(new ListenableFutureCallback<SendResult<String, Object>>() {
             @Override
             public void onFailure(Throwable ex) {
                 System.out.println("发送消息失败："+ex.getMessage());
