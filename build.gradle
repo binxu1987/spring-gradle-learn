@@ -17,6 +17,7 @@ dependencies {
     implementation 'org.springframework.kafka:spring-kafka'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.kafka:spring-kafka-test'
+//    compile group: 'org.json', name: 'json', version: '20201115'
 }
 
 test {
