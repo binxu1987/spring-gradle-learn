@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 public class KafkaProducer {
     @Autowired
@@ -46,6 +49,17 @@ public class KafkaProducer {
                 System.out.println("发送消息成功：" + result.getRecordMetadata().topic() + "-"
                         + result.getRecordMetadata().partition() + "-" + result.getRecordMetadata().offset());
             }
+        });
+
+    }
+
+    @GetMapping("/kafka/batch")
+    public void sendMessage4() {
+        List<String> list = new ArrayList<>();
+        list.add("1");
+        list.add("2");
+        list.forEach(s -> {
+            kafkaTemplate.send("topic1",s);
         });
 
     }
