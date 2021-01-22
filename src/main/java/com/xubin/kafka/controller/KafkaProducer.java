@@ -1,5 +1,6 @@
 package com.xubin.kafka.controller;
 
+import com.xubin.kafka.entity.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -62,5 +64,19 @@ public class KafkaProducer {
             kafkaTemplate.send("topic1",s);
         });
 
+    }
+    @GetMapping("/kafka/batch1")
+    public void sendMessage5() {
+//        List<String> list = new ArrayList<>();
+//        list.add("1");
+//        list.add("2");
+//        list.forEach(s -> {
+//            kafkaTemplate.send("topic1",s);
+//        });
+        Message message=new Message();
+        message.setId(1L);
+        message.setContent("cetshi");
+        message.setCreate(new Date());
+        kafkaTemplate.send("topic1",message);
     }
 }
